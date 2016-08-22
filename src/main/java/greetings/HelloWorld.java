@@ -1,19 +1,28 @@
 package greetings;
 
+import printing.BWCartridge;
+import printing.ICartridge;
 import printing.IMachine;
 import printing.Printer;
+import printing.colorCartridge;
 
 public class HelloWorld {
 
 	public static void main(String[] args) {
 
-		IMachine machine = new Printer(true, "My Printer");
+		Printer<colorCartridge> printer= new Printer<colorCartridge>(true, "My Printer",new colorCartridge());
+		Printer<BWCartridge> printer2 = new Printer<BWCartridge>(true, "MY PRINTER1", new BWCartridge());
+		
+		printOne(printer);
+	
+		
+	}
 
-		machine.turnOn();
-
-		// myPrinter.loadPaper(3);
-		// myPrinter.print(2);
-
+	private static void printOne(Printer<? extends ICartridge> printer) {
+		
+		String fillPercentage = printer.getCartidge().getFillPercentage();
+		System.out.println(fillPercentage);
+		
 	}
 
 }
